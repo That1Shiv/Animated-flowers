@@ -1,0 +1,401 @@
+*,
+*::after,
+*::before {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+:root {
+  --color-bg: radial-gradient(ellipse at 50% 110%, #291a58 0%, #101633 46%, #070b1b 100%);
+  --color-glass: linear-gradient(115deg, rgba(82, 121, 214, 0.82), rgba(190, 151, 255, 0.7));
+  --color-water: linear-gradient(115deg, #426fc5, #9c76e8 55%, #d76593);
+  --color-stem: linear-gradient(to left top, #9b8aff 8%, #416bd0 55%, #263b83);
+  --color-petal-blue: linear-gradient(to bottom, #a9c7ff, #667ff2 58%, #3a397e 99%);
+  --color-petal-purple: linear-gradient(to bottom, #f0d8ff, #bd82f4 58%, #7844b5 99%);
+  --color-petal-red: linear-gradient(to bottom, #ff9ca8, #ed3f58 58%, #821d4b 99%);
+  --heart-blue: #a9c7ff;
+  --heart-purple: #d9a8ff;
+  --heart-red: #ff667c;
+}
+body {
+  background-image: var(--color-bg);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  overflow: hidden;
+  text-align: center;
+}
+h1 {
+  font-size: 3rem;
+  color: #d9a8ff;
+  background: linear-gradient(100deg, #a9c7ff 5%, #e1b5ff 48%, #ff667c 95%);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  position: absolute;
+  top: 45%;
+  font-family: 'Playfair Display', serif;
+  opacity: 1;
+  animation: word-animation 2s ease-in-out forwards;
+}
+.my-name {
+  position: absolute;
+  color: rgba(255, 255, 255, 0.318);
+  top: 60%;
+  animation: word-animation 2s ease-in-out forwards;
+}
+.heart {
+  position: absolute;
+  top: -2rem;
+  font-size: 0.85rem;
+  line-height: 1;
+  z-index: 2;
+  pointer-events: none;
+  text-shadow: 0 0 0.65rem currentColor;
+  animation: heart-fall 6s linear forwards;
+}
+
+@keyframes heart-fall {
+  from {
+    transform: translate3d(0, -5vh, 0) rotate(-15deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  to {
+    transform: translate3d(var(--heart-drift), 110vh, 0) rotate(35deg);
+    opacity: 0.15;
+  }
+}
+@keyframes word-animation {
+  to {
+    opacity: 0;
+  }
+}
+
+.flower {
+  position: relative;
+  display: none;
+}
+
+.flower__glass {
+  width: 20vmin;
+  height: 30vmin;
+  background-image: var(--color-glass);
+  clip-path: polygon(0 0, 100% 0, 85% 100%, 15% 100%);
+  opacity: 0.8;
+  position: relative;
+}
+
+.flower__glass::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-color: #26345f;
+  width: 100%;
+  height: 2vmin;
+}
+
+.flower__glass::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  background-image: var(--color-water);
+  width: 100%;
+  height: 15vmin;
+}
+
+.f-wrapper {
+  position: absolute;
+  left: 45%;
+  bottom: 2vmin;
+}
+
+.f-wrapper--2 {
+  left: 50%;
+  bottom: 5%;
+  transform-origin: 10% left;
+  transform: rotate(20deg);
+}
+
+.f-wrapper--3 {
+  left: 30%;
+  bottom: 5%;
+  transform-origin: 10% left;
+  transform: rotate(-10deg);
+}
+
+.f-wrapper--3 .flower__line {
+  height: 45vmin;
+  position: relative;
+}
+
+.f-wrapper--3 .flower__line::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6vmin;
+  height: 6vmin;
+  transform: translate(-69%, -30%) rotate(-5deg);
+  border-radius: 10vmin 10vmin 0 0;
+  border: 2vmin solid #394b9b;
+  border-bottom: transparent;
+  border-left: transparent;
+}
+
+.f-wrapper--3 .flower__line::before {
+  content: '';
+  position: absolute;
+  left: -40%;
+  top: -1%;
+  width: 6vmin;
+  height: 2vmin;
+  transform-origin: right;
+  transform: translate(-100%, -80%) rotate(-20deg);
+  background-color: #5361bd;
+  border-radius: 2vmin;
+}
+
+.f-wrapper--3 .flower__line {
+  background-image: linear-gradient(to top, #344b9b, #7466d2);
+}
+
+.f-wrapper--2 .flower__line {
+  height: 45vmin;
+}
+
+.f-wrapper--2 .f {
+  transform: translateX(-50%) rotate(20deg);
+}
+
+.f-wrapper--3 .f {
+  transform: translate(-350%, -50%) rotate(-120deg);
+}
+
+.f-wrapper--2 .flower__leaf:not(:first-child) {
+  width: 3.8vmin;
+  height: 10vmin;
+  background-image: var(--color-petal-red);
+}
+
+.f-wrapper--3 .flower__leaf:not(:first-child) {
+  width: 3.8vmin;
+  height: 10vmin;
+  background-image: var(--color-petal-blue);
+}
+
+.f-wrapper--3 .flower__leaf--1 {
+  width: 8vmin;
+  height: 10vmin;
+  bottom: 2vmin;
+  background-color: #bd82f4;
+}
+
+.f-wrapper--2 .flower__leaf--1 {
+  width: 8vmin;
+  height: 10vmin;
+  bottom: 2vmin;
+  background-color: #ed3f58;
+}
+
+.f-wrapper--2 .f .flower__leaf--8 {
+  width: 10vmin;
+  height: 9vmin;
+  bottom: 3vmin;
+  left: -30%;
+  transform: rotate(-50deg);
+  background-image: linear-gradient(to left bottom, #ff9ca8, #e04470 55%, #492b74);
+}
+
+.f-wrapper--3 .f .flower__leaf--8 {
+  width: 10vmin;
+  height: 9vmin;
+  left: -10% !important;
+  background-image: linear-gradient(to left bottom, #e5c6ff, #a66ee8 55%, #593b9b);
+}
+
+.flower__line {
+  width: 2vmin;
+  height: 56vmin;
+  background-image: var(--color-stem);
+  border-radius: 4vmin;
+}
+
+.f {
+  position: absolute;
+  top: 1vmin;
+  left: 50%;
+  transform: translateX(-50%) rotate(-10deg);
+  width: 2vmin;
+  height: 2vmin;
+}
+
+.flower__leaf {
+  position: absolute;
+  left: 50%;
+  bottom: 2vmin;
+  transform: translateX(-50%);
+  width: 5vmin;
+  height: 14vmin;
+  background-image: var(--color-petal-purple);
+
+  clip-path: ellipse(50% 50% at 50% 50%);
+  transform-origin: center bottom;
+  animation: open-flower 2s 1s backwards;
+}
+
+.flower__leaf--1 {
+  width: 10vmin;
+  height: 12vmin;
+  bottom: 3vmin;
+  border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
+  background-color: #ed3f58;
+  background-image: none;
+  animation: open-flowe--middle 1.4s 1s backwards;
+}
+
+.flower__leaf--2 {
+  transform: translateX(-50%) rotate(-30deg);
+}
+.flower__leaf--3 {
+  transform: translateX(-50%) rotate(-50deg);
+}
+.flower__leaf--4 {
+  transform: translateX(-50%) rotate(-70deg);
+}
+
+.flower__leaf--5 {
+  transform: translateX(-50%) rotate(30deg);
+}
+
+.flower__leaf--6 {
+  transform: translateX(-50%) rotate(50deg);
+}
+
+.flower__leaf--7 {
+  transform: translateX(-50%) rotate(70deg);
+}
+
+.flower__leaf--8 {
+  width: 13vmin;
+  height: 11vmin;
+  bottom: 6vmin;
+  left: -30%;
+  border-radius: none;
+  clip-path: none;
+  border-radius: 10vmin 2vmin 10vmin 2vmin;
+  transform: rotate(-55deg);
+  background-image: linear-gradient(to left bottom, #b9a0ff, #788cf2, #3a397e 98%);
+}
+
+.flower__fall-down--yellow {
+  animation: flower-fall-down-yellow 8s 1.2s linear forwards;
+}
+
+.flower__fall-down--pink {
+  animation: flower-fall-down-pink 5s 1.2s linear forwards;
+}
+
+.flower__fall-down--purple {
+  bottom: 4vmin;
+  animation:
+    flower-fall-down-purple 6s 1.2s linear forwards,
+    flower-falling 6s 7.2s linear infinite;
+}
+
+@keyframes open-flower {
+  0% {
+    transform: translateX(-50%) rotate(0);
+  }
+}
+
+@keyframes open-flowe--middle {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) scale(0);
+  }
+}
+
+@keyframes flower-fall-down-pink {
+  0% {
+    transform: rotate(-55deg);
+  }
+
+  50% {
+    transform: rotateX(-100deg);
+  }
+
+  100% {
+    transform: translate(2vmin, 28vmin);
+  }
+}
+
+@keyframes flower-fall-down-yellow {
+  0% {
+    transform: rotate(-55deg);
+  }
+
+  50% {
+    bottom: 3vmin;
+    transform: rotateX(-100deg);
+  }
+
+  100% {
+    transform: translate(2vmin, 70vmin) rotate(150deg);
+  }
+}
+
+@keyframes flower-fall-down-purple {
+  0% {
+    transform: rotate(-50deg);
+  }
+
+  25% {
+    bottom: 1vmin;
+    transform: rotateX(-100deg);
+    perspective: 0px;
+  }
+
+  50% {
+    perspective: 0px;
+    transform: translate(-30vmin, 2vmin) rotate(90deg);
+  }
+
+  75% {
+    perspective: 0px;
+    transform: translate(-34vmin, -2vmin);
+  }
+
+  100% {
+    transform-origin: center;
+    transform: translate(-34vmin, -2vmin) rotateY(-80deg) rotateX(35deg);
+  }
+}
+
+@keyframes flower-falling {
+  0%,
+  100% {
+    transform-origin: center;
+    transform: translate(-34vmin, -2vmin) rotateY(-80deg) rotateX(35deg);
+  }
+
+  25% {
+    transform-origin: center;
+    transform: translate(-34.4vmin, -2vmin) rotateY(-84deg) rotateX(35deg);
+  }
+
+  50% {
+    transform-origin: center;
+    transform: translate(-32vmin, -4.2vmin) rotateY(-80deg) rotateX(35deg);
+  }
+
+  75% {
+    transform-origin: center;
+    transform: translate(-36vmin, 1.1vmin) rotateY(-80deg) rotateX(35deg);
+  }
+}
