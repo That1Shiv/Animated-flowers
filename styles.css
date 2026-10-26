@@ -177,48 +177,6 @@ h1 {
   transform: translate(-350%, -50%) rotate(-120deg);
 }
 
-.f-wrapper--2 .flower__leaf:not(:first-child) {
-  width: 3.8vmin;
-  height: 10vmin;
-  background-image: var(--color-petal-red);
-}
-
-.f-wrapper--3 .flower__leaf:not(:first-child) {
-  width: 3.8vmin;
-  height: 10vmin;
-  background-image: var(--color-petal-blue);
-}
-
-.f-wrapper--3 .flower__leaf--1 {
-  width: 8vmin;
-  height: 10vmin;
-  bottom: 2vmin;
-  background-color: #bd82f4;
-}
-
-.f-wrapper--2 .flower__leaf--1 {
-  width: 8vmin;
-  height: 10vmin;
-  bottom: 2vmin;
-  background-color: #ed3f58;
-}
-
-.f-wrapper--2 .f .flower__leaf--8 {
-  width: 10vmin;
-  height: 9vmin;
-  bottom: 3vmin;
-  left: -30%;
-  transform: rotate(-50deg);
-  background-image: linear-gradient(to left bottom, #ff9ca8, #e04470 55%, #492b74);
-}
-
-.f-wrapper--3 .f .flower__leaf--8 {
-  width: 10vmin;
-  height: 9vmin;
-  left: -10% !important;
-  background-image: linear-gradient(to left bottom, #e5c6ff, #a66ee8 55%, #593b9b);
-}
-
 .flower__line {
   width: 2vmin;
   height: 56vmin;
@@ -233,64 +191,167 @@ h1 {
   transform: translateX(-50%) rotate(-10deg);
   width: 2vmin;
   height: 2vmin;
+  z-index: 1;
 }
 
-.flower__leaf {
+.f-wrapper .f {
+  --lily-petal-color: var(--color-petal-purple);
+  --lily-center-color: var(--heart-purple);
+}
+
+.f-wrapper--2 .f {
+  --lily-petal-color: var(--color-petal-red);
+  --lily-center-color: var(--heart-red);
+}
+
+.f-wrapper--3 .f {
+  --lily-petal-color: var(--color-petal-blue);
+  --lily-center-color: var(--heart-blue);
+}
+
+.flower__tepal {
   position: absolute;
   left: 50%;
-  bottom: 2vmin;
+  bottom: 0;
+  width: 5.8vmin;
+  height: 12.5vmin;
+  border-radius: 48% 48% 44% 44% / 18% 18% 72% 72%;
+  clip-path: polygon(
+    50% 0,
+    62% 10%,
+    79% 28%,
+    91% 46%,
+    97% 58%,
+    91% 69%,
+    77% 82%,
+    62% 94%,
+    50% 100%,
+    38% 94%,
+    23% 82%,
+    9% 69%,
+    3% 58%,
+    9% 46%,
+    21% 28%,
+    38% 10%
+  );
+  background-image:
+    linear-gradient(90deg, transparent 45%, rgba(255, 255, 255, 0.19) 50%, transparent 55%),
+    var(--lily-petal-color);
+  box-shadow: inset 0 0 1.1vmin rgba(28, 22, 75, 0.2);
+  transform: translateX(-50%) rotate(var(--tepal-angle)) scale(1);
+  transform-origin: 50% 100%;
+  animation: lily-tepal-open 1.7s calc(0.85s + var(--open-order) * 100ms) backwards;
+}
+
+/* Six radiating tepals in two alternating whorls form the open lily star. */
+.flower__tepal--outer-1 {
+  --tepal-angle: -60deg;
+  --open-order: 0;
+  z-index: 1;
+}
+
+.flower__tepal--outer-2 {
+  --tepal-angle: 60deg;
+  --open-order: 1;
+  z-index: 1;
+}
+
+.flower__tepal--outer-3 {
+  --tepal-angle: 180deg;
+  --open-order: 2;
+  z-index: 1;
+}
+
+.flower__tepal--inner-1 {
+  --tepal-angle: 0deg;
+  --open-order: 3;
+  width: 6.5vmin;
+  height: 13.5vmin;
+  z-index: 2;
+}
+
+.flower__tepal--inner-2 {
+  --tepal-angle: 120deg;
+  --open-order: 4;
+  width: 6.5vmin;
+  height: 13.5vmin;
+  z-index: 2;
+}
+
+.flower__tepal--inner-3 {
+  --tepal-angle: 240deg;
+  --open-order: 5;
+  width: 6.5vmin;
+  height: 13.5vmin;
+  z-index: 2;
+}
+
+.flower__center {
+  position: absolute;
+  z-index: 3;
+  bottom: -0.6vmin;
+  left: 50%;
+  width: 1.2vmin;
+  height: 1.2vmin;
+  border-radius: 50%;
+  background: var(--lily-center-color);
+  box-shadow: 0 0 1.2vmin var(--lily-center-color);
   transform: translateX(-50%);
-  width: 5vmin;
-  height: 14vmin;
-  background-image: var(--color-petal-purple);
-
-  clip-path: ellipse(50% 50% at 50% 50%);
-  transform-origin: center bottom;
-  animation: open-flower 2s 1s backwards;
 }
 
-.flower__leaf--1 {
-  width: 10vmin;
-  height: 12vmin;
-  bottom: 3vmin;
-  border-radius: 50% 50% 50% 50% / 80% 80% 20% 20%;
-  background-color: #ed3f58;
-  background-image: none;
-  animation: open-flowe--middle 1.4s 1s backwards;
+.flower__stamen {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: 0.16vmin;
+  height: 5.8vmin;
+  border-radius: 1vmin;
+  background: linear-gradient(to top, var(--lily-center-color), rgba(255, 255, 255, 0.88));
+  transform: translateX(-50%) rotate(var(--stamen-angle));
+  transform-origin: 50% 100%;
 }
 
-.flower__leaf--2 {
-  transform: translateX(-50%) rotate(-30deg);
-}
-.flower__leaf--3 {
-  transform: translateX(-50%) rotate(-50deg);
-}
-.flower__leaf--4 {
-  transform: translateX(-50%) rotate(-70deg);
-}
-
-.flower__leaf--5 {
-  transform: translateX(-50%) rotate(30deg);
-}
-
-.flower__leaf--6 {
-  transform: translateX(-50%) rotate(50deg);
+.flower__stamen::after {
+  content: '';
+  position: absolute;
+  top: -0.45vmin;
+  left: 50%;
+  width: 0.9vmin;
+  height: 0.42vmin;
+  border-radius: 50%;
+  background: var(--lily-center-color);
+  box-shadow: 0 0 0.7vmin var(--lily-center-color);
+  transform: translateX(-50%);
 }
 
-.flower__leaf--7 {
-  transform: translateX(-50%) rotate(70deg);
+.flower__stamen:nth-child(1) {
+  --stamen-angle: -36deg;
+  height: 5.4vmin;
 }
 
-.flower__leaf--8 {
-  width: 13vmin;
-  height: 11vmin;
-  bottom: 6vmin;
-  left: -30%;
-  border-radius: none;
-  clip-path: none;
-  border-radius: 10vmin 2vmin 10vmin 2vmin;
-  transform: rotate(-55deg);
-  background-image: linear-gradient(to left bottom, #b9a0ff, #788cf2, #3a397e 98%);
+.flower__stamen:nth-child(2) {
+  --stamen-angle: -22deg;
+  height: 5.8vmin;
+}
+
+.flower__stamen:nth-child(3) {
+  --stamen-angle: -8deg;
+  height: 6.2vmin;
+}
+
+.flower__stamen:nth-child(4) {
+  --stamen-angle: 8deg;
+  height: 6.2vmin;
+}
+
+.flower__stamen:nth-child(5) {
+  --stamen-angle: 22deg;
+  height: 5.8vmin;
+}
+
+.flower__stamen:nth-child(6) {
+  --stamen-angle: 36deg;
+  height: 5.4vmin;
 }
 
 .flower__fall-down--yellow {
@@ -302,78 +363,81 @@ h1 {
 }
 
 .flower__fall-down--purple {
-  bottom: 4vmin;
   animation:
     flower-fall-down-purple 6s 1.2s linear forwards,
     flower-falling 6s 7.2s linear infinite;
 }
 
-@keyframes open-flower {
-  0% {
-    transform: translateX(-50%) rotate(0);
-  }
-}
-
-@keyframes open-flowe--middle {
+@keyframes lily-tepal-open {
   0% {
     opacity: 0;
-    transform: translateX(-50%) scale(0);
+    transform: translateX(-50%) rotate(0deg) scale(0.12);
+  }
+
+  72% {
+    opacity: 1;
+    transform: translateX(-50%) rotate(calc(var(--tepal-angle) * 1.12)) scale(1.04);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateX(-50%) rotate(var(--tepal-angle)) scale(1);
   }
 }
 
 @keyframes flower-fall-down-pink {
   0% {
-    transform: rotate(-55deg);
+    transform: translateX(-50%) rotate(var(--tepal-angle));
   }
 
   50% {
-    transform: rotateX(-100deg);
+    transform: translateX(-50%) rotateX(-100deg) rotate(var(--tepal-angle));
   }
 
   100% {
-    transform: translate(2vmin, 28vmin);
+    transform: translate(calc(-50% + 2vmin), 28vmin) rotate(165deg);
   }
 }
 
 @keyframes flower-fall-down-yellow {
   0% {
-    transform: rotate(-55deg);
+    transform: translateX(-50%) rotate(var(--tepal-angle));
   }
 
   50% {
     bottom: 3vmin;
-    transform: rotateX(-100deg);
+    transform: translateX(-50%) rotateX(-100deg) rotate(var(--tepal-angle));
   }
 
   100% {
-    transform: translate(2vmin, 70vmin) rotate(150deg);
+    transform: translate(calc(-50% + 2vmin), 70vmin) rotate(150deg);
   }
 }
 
 @keyframes flower-fall-down-purple {
   0% {
-    transform: rotate(-50deg);
+    transform: translateX(-50%) rotate(var(--tepal-angle));
   }
 
   25% {
     bottom: 1vmin;
-    transform: rotateX(-100deg);
+    transform: translateX(-50%) rotateX(-100deg) rotate(var(--tepal-angle));
     perspective: 0px;
   }
 
   50% {
     perspective: 0px;
-    transform: translate(-30vmin, 2vmin) rotate(90deg);
+    transform: translate(calc(-50% - 30vmin), 2vmin) rotate(90deg);
   }
 
   75% {
     perspective: 0px;
-    transform: translate(-34vmin, -2vmin);
+    transform: translate(calc(-50% - 34vmin), -2vmin);
   }
 
   100% {
     transform-origin: center;
-    transform: translate(-34vmin, -2vmin) rotateY(-80deg) rotateX(35deg);
+    transform: translate(calc(-50% - 34vmin), -2vmin) rotateY(-80deg) rotateX(35deg);
   }
 }
 
@@ -381,21 +445,21 @@ h1 {
   0%,
   100% {
     transform-origin: center;
-    transform: translate(-34vmin, -2vmin) rotateY(-80deg) rotateX(35deg);
+    transform: translate(calc(-50% - 34vmin), -2vmin) rotateY(-80deg) rotateX(35deg);
   }
 
   25% {
     transform-origin: center;
-    transform: translate(-34.4vmin, -2vmin) rotateY(-84deg) rotateX(35deg);
+    transform: translate(calc(-50% - 34.4vmin), -2vmin) rotateY(-84deg) rotateX(35deg);
   }
 
   50% {
     transform-origin: center;
-    transform: translate(-32vmin, -4.2vmin) rotateY(-80deg) rotateX(35deg);
+    transform: translate(calc(-50% - 32vmin), -4.2vmin) rotateY(-80deg) rotateX(35deg);
   }
 
   75% {
     transform-origin: center;
-    transform: translate(-36vmin, 1.1vmin) rotateY(-80deg) rotateX(35deg);
+    transform: translate(calc(-50% - 36vmin), 1.1vmin) rotateY(-80deg) rotateX(35deg);
   }
 }
